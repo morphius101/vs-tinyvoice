@@ -122,10 +122,13 @@
   document.getElementById('signup-form').addEventListener('submit', function(e) {
     e.preventDefault();
     var email = document.getElementById('signup-email').value;
+    var data = new FormData();
+    data.append('email', email);
+    data.append('product', 'TinyVoice');
     fetch('https://formspree.io/f/xpqygvng', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-      body: JSON.stringify({email: email, product: 'TinyVoice'})
+      headers: {'Accept': 'application/json'},
+      body: data
     }).then(function(r) {
       document.getElementById('signup-form').style.display = 'none';
       document.getElementById('signup-success').style.display = 'block';
